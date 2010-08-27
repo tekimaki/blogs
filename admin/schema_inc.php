@@ -1,5 +1,22 @@
 <?php
 
+global $gBitSystem;
+
+$gBitSystem->registerPackageInfo( BLOGS_PKG_NAME, array(
+	'description' => "A Blog is a web based journal or diary.",
+	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
+) );
+
+// Requirements
+$gBitSystem->registerRequirements( BLOGS_PKG_NAME, array(
+	'liberty' => array( 'min' => '2.1.4' ),
+));
+
+
+// Install process
+global $gBitInstaller;
+if( is_object( $gBitInstaller ) ){
+
 $tables = array(
 
 'blog_posts' => "
@@ -38,16 +55,9 @@ $tables = array(
 
 );
 
-global $gBitInstaller;
-
 foreach( array_keys( $tables ) AS $tableName ) {
 	$gBitInstaller->registerSchemaTable( BLOGS_PKG_NAME, $tableName, $tables[$tableName] );
 }
-
-$gBitInstaller->registerPackageInfo( BLOGS_PKG_NAME, array(
-	'description' => "A Blog is a web based journal or diary.",
-	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
-) );
 
 // ### Indexes
 $indices = array (
@@ -126,8 +136,4 @@ $gBitInstaller->registerContentObjects( BLOGS_PKG_NAME, array(
 	'BitBlogPost'=>BLOGS_PKG_PATH.'BitBlogPost.php'
 ));
 
-// Requirements
-$gBitInstaller->registerRequirements( BLOGS_PKG_NAME, array(
-	'liberty' => array( 'min' => '2.1.4' ),
-));
-
+}
