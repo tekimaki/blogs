@@ -1,0 +1,113 @@
+---
+blogs: 
+  version: 0.0.0
+  required: false
+  requirements: 
+    liberty: 
+      min: 2.1.4
+  description: A Blog is a web based journal or diary.
+  license: 
+    name: LGPL
+    description: Licensed under the GNU LESSER GENERAL PUBLIC LICENSE.
+    url: http://www.gnu.org/copyleft/lesser.html 
+  homeable: false
+  tables: 
+    blog_posts: |
+      
+      post_id I4 PRIMARY,
+      content_id I4 NOTNULL,
+      publish_date I4,
+      expire_date I4,
+      trackbacks_to X,
+      trackbacks_from X
+      CONSTRAINT '
+      , CONSTRAINT `blog_posts_content_ref` FOREIGN KEY (`content_id`) REFERENCES `liberty_content` (`content_id`)'
+      
+    blogs: |
+      
+      blog_id I4 PRIMARY,
+      content_id I4 NOTNULL,
+      is_public C(1),
+      max_posts I4,
+      activity decimal(4,2),
+      use_find C(1),
+      use_title C(1),
+      add_date C(1),
+      add_poster C(1),
+      allow_comments C(1)
+      CONSTRAINT ', CONSTRAINT `blogs_content_ref` FOREIGN KEY (`content_id`) REFERENCES `liberty_content` (`content_id`)'
+      
+    blogs_posts_map: |
+      
+      post_content_id I4 NOTNULL,
+      blog_content_id I4 NOTNULL,
+      date_added I4,
+      crosspost_note X
+      CONSTRAINT ', CONSTRAINT `blogs_posts_map_post_ref` FOREIGN KEY (`post_content_id`) REFERENCES `liberty_content` (`content_id`)
+      , CONSTRAINT `blogs_posts_map_blog_ref` FOREIGN KEY (`blog_content_id`) REFERENCES `liberty_content` (`content_id`)'
+      
+  indexes: 
+    blog_posts_post_id_idx: 
+      table: blog_posts
+      cols: post_id
+      opts: 
+    blogs_content_id_idx: 
+      table: blogs
+      cols: content_id
+      opts: 
+        - UNIQUE
+    blog_posts_content_id_idx: 
+      table: blog_posts
+      cols: content_id
+      opts: 
+        - UNIQUE
+  sequences: 
+    blogs_blog_id_seq: 
+      start: 1
+    blog_posts_post_id_seq: 
+      start: 1
+  permissions: 
+    p_blogs_create: 
+      description: Can create a blog
+      level: registered
+    p_blogs_create_is_public: 
+      description: Can create a public blog
+      level: editors
+    p_blogs_post: 
+      description: Can create a blog post
+      level: registered
+    p_blogs_update: 
+      description: Can update blogs and blog posts
+      level: editors
+    p_blogs_send_post: 
+      description: Can email a blog post
+      level: registered
+    p_blogs_admin: 
+      description: Can admin blogs
+      level: editors
+    p_blogs_view: 
+      description: Can read blogs
+      level: basic
+    p_blog_posts_read_future: 
+      description: Can view future dated posts
+      level: editors
+    p_blog_posts_read_expired: 
+      description: Can view expired posts
+      level: editors
+  preferences: 
+    blog_list_activity: 'y'
+    blog_list_created: 'y'
+    blog_list_description: 'y'
+    blog_list_lastmodif: 'y'
+    blog_list_order: created_desc
+    blog_list_posts: 'y'
+    blog_list_title: 'y'
+    blog_list_user: n
+    blog_list_visits: 'y'
+    blog_categ: n
+    blog_parent_categ: 0
+    blog_posts_comments: n
+    blog_rankings: 'y'
+    blog_list_user_as: text
+    blog_posts_description_length: 500
+    blog_posts_max_list: 10
