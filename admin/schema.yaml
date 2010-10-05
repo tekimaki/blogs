@@ -111,3 +111,6 @@ blogs:
     blog_list_user_as: text
     blog_posts_description_length: 500
     blog_posts_max_list: 10
+  contenttypes:
+    BitBlog: BitBlog.php
+    BitBlogPost: BitBlogPost.php
