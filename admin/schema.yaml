@@ -10,7 +10,7 @@ blogs:
     name: LGPL
     description: Licensed under the GNU LESSER GENERAL PUBLIC LICENSE.
     url: http://www.gnu.org/copyleft/lesser.html 
-  homeable: false
+  homeable: true
   tables: 
     blog_posts: |
       
