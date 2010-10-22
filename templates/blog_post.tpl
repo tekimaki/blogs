@@ -1,5 +1,8 @@
 {* $Header$ *}
 {strip}
+
+<div class="floaticon">{bithelp}</div>
+
 <div class="edit blogs">
 	<div class="header">
 		{ if !$post_info.content_id }
@@ -10,20 +13,72 @@
 	</div>
 
 	<div class="body">
-		{if $preview eq 'y'}
-			<h2>Preview {$title}</h2>
-			<div class="preview">
-				{include file="bitpackage:blogs/view_blog_post.tpl"}
-			</div>
-		{/if}
-
+		{formfeedback warning=$errors}
 		{form enctype="multipart/form-data" id="editpageform"}
 			<input type="hidden" name="content_id" value="{$gContent->getField('content_id')}" />
 			<input type="hidden" name="rows" value="{$rows}"/>
 			<input type="hidden" name="cols" value="{$cols}"/>
+			<div class="servicetabs">
+			{jstabs id="servicetabs"}
+				{jstab title="Advanced Options"}
+					{legend legend="Publication and Expiration Dates"}
+						<div class="row">
+							<input type="hidden" name="publishDateInput" value="1" />
+							{formlabel label="Publish Date" for=""}
+							{forminput}
+								{html_select_date prefix="publish_" time=$post_info.publish_date start_year="-5" end_year="+10"} {tr}at{/tr}&nbsp;
+								<span dir="ltr">{html_select_time prefix="publish_" time=$post_info.publish_date display_seconds=false}&nbsp;{$siteTimeZone}</span>
+								{formhelp note="This post will not be displayed <strong>before</strong> this date."}
+							{/forminput}
+						</div>
 
+						<div class="row">
+							<input type="hidden" name="expireDateInput" value="1" />
+							{formlabel label="Expiration Date" for=""}
+							{forminput}
+								{html_select_date prefix="expire_" time=$post_info.expire_date start_year="-5" end_year="+10"} {tr}at{/tr}&nbsp;
+								<span dir="ltr">{html_select_time prefix="expire_" time=$post_info.expire_date display_seconds=false}&nbsp;{$siteTimeZone}</span>
+								{formhelp note="If this date is set after the publish date, this post will not be displayed <strong>after</strong> the expiration date."}
+							{/forminput}
+						</div>
+					{/legend}
+
+					{*
+					{legend legend="Trackbacks"}
+						<div class="row">
+							{formlabel label="Send trackback pings" for="trackback"}
+							{forminput}
+								<textarea name="trackback" id="trackback" rows="3" cols="50">{section name=ix loop=$trackbacks_to}{if not $smarty.section.ix.first},{/if}{$trackbacks_to[ix]}{/section}</textarea>
+								{formhelp note="Insert a comma separated list of URIs to send blogs."}
+							{/forminput}
+						</div>
+					{/legend}
+					*}
+				{/jstab}
+
+				{if $gBitUser->hasPermission('p_liberty_attach_attachments') }
+				{jstab title="Attachments"}
+					{legend legend="Attachments"}
+						{include file="bitpackage:liberty/edit_storage.tpl"}
+					{/legend}
+				{/jstab}
+				{/if}
+
+				{* any service edit template tabs *}
+				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl" display_help_tab=1}
+			{/jstabs}
+			</div>
+			<div class="editcontainer">
 			{jstabs}
-				{jstab title="Blog Post"}
+				{if $preview eq 'y'}
+					{jstab title="Preview"}
+						<h2>Preview {$title}</h2>
+						<div class="preview">
+							{include file="bitpackage:blogs/view_blog_post.tpl"}
+						</div>
+					{/jstab}
+				{/if}
+				{jstab title="Edit"}
 					{legend legend="Post"}
 						{if !$blog_data.use_title OR $blog_data.use_title eq 'y'}
 							<div class="row">
@@ -81,56 +136,13 @@
 
 						{include file="bitpackage:liberty/edit_storage_list.tpl"}
 
-						<div class="row submit">
-							<input type="submit" name="preview" value="{tr}Preview{/tr}" />&nbsp;
-							<input type="submit" name="save_post_exit" value="{tr}Save{/tr}" />
+						<div class="buttonHolder row submit">
+							<input class="button" type="submit" name="preview" value="{tr}Preview{/tr}" />&nbsp;
+							<input class="button" type="submit" name="save_post_exit" value="{tr}Save{/tr}" />
 						</div>
 					{/legend}
 				{/jstab}
 
-				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl"}
-
-				{if $gBitUser->hasPermission('p_liberty_attach_attachments') }
-				{jstab title="Attachments"}
-					{legend legend="Attachments"}
-						{include file="bitpackage:liberty/edit_storage.tpl"}
-					{/legend}
-				{/jstab}
-				{/if}
-
-				{jstab title="Advanced Options"}
-					{legend legend="Publication and Expiration Dates"}
-						<div class="row">
-							<input type="hidden" name="publishDateInput" value="1" />
-							{formlabel label="Publish Date" for=""}
-							{forminput}
-								{html_select_date prefix="publish_" time=$post_info.publish_date start_year="-5" end_year="+10"} {tr}at{/tr}&nbsp;
-								<span dir="ltr">{html_select_time prefix="publish_" time=$post_info.publish_date display_seconds=false}&nbsp;{$siteTimeZone}</span>
-								{formhelp note="This post will not be displayed <strong>before</strong> this date."}
-							{/forminput}
-						</div>
-
-						<div class="row">
-							<input type="hidden" name="expireDateInput" value="1" />
-							{formlabel label="Expiration Date" for=""}
-							{forminput}
-								{html_select_date prefix="expire_" time=$post_info.expire_date start_year="-5" end_year="+10"} {tr}at{/tr}&nbsp;
-								<span dir="ltr">{html_select_time prefix="expire_" time=$post_info.expire_date display_seconds=false}&nbsp;{$siteTimeZone}</span>
-								{formhelp note="If this date is set after the publish date, this post will not be displayed <strong>after</strong> the expiration date."}
-							{/forminput}
-						</div>
-					{/legend}
-
-					{legend legend="Trackbacks"}
-						<div class="row">
-							{formlabel label="Send trackback pings" for="trackback"}
-							{forminput}
-								<textarea name="trackback" id="trackback" rows="3" cols="50">{section name=ix loop=$trackbacks_to}{if not $smarty.section.ix.first},{/if}{$trackbacks_to[ix]}{/section}</textarea>
-								{formhelp note="Insert a comma separated list of URIs to send blogs."}
-							{/forminput}
-						</div>
-					{/legend}
-				{/jstab}
 			{/jstabs}
 		{/form}
 	</div><!-- end .body -->
