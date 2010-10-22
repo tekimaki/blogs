@@ -84,7 +84,7 @@
 							<div class="row">
 								{formlabel label="Title" for="title"}
 								{forminput}
-									<input type="text" size="50" name="title" id="title" value="{$post_info.title|escape}" />
+									<input class="textInput" type="text" size="50" name="title" id="title" value="{$post_info.title|escape}" />
 									{formhelp note="When you leave the title blank, the current date will be substituted automagically."}
 								{/forminput}
 							</div>
@@ -93,7 +93,7 @@
 							<div class="row">
 								{formlabel label="Summary" for="summary"}
 								{forminput}
-									<input type="text" size="50" name="summary" id="summary" value="{$post_info.summary|escape}" />
+									<input class="textInput" type="text" size="50" name="summary" id="summary" value="{$post_info.summary|escape}" />
 									{formhelp note="Description used in listings and search results. If left empty, the first few sentences of the body text will be used."}
 								{/forminput}
 							</div>
