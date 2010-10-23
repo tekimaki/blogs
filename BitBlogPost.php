@@ -894,6 +894,7 @@ class BitBlogPost extends LibertyMime {
 					break;
 				case 'sort_date_asc':
 				case 'sort_date_desc':
+					$sortModePrefix = '';
 					break;
 				case 'real_name_asc':
 				case 'real_name_desc':
