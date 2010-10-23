@@ -24,6 +24,7 @@ if( $gBitSystem->isPackageActive( 'blogs' ) ) {
 		);
 		$gBitSystem->registerAppMenu( $menuHash );
 
+		/*
 		$gLibertySystem->registerService( 
 			LIBERTY_SERVICE_BLOGS, 
 			BLOGS_PKG_NAME, 
@@ -33,6 +34,7 @@ if( $gBitSystem->isPackageActive( 'blogs' ) ) {
 				'required' => TRUE,
 			)
 		);
+		 */
 	}
 
 	$gBitSystem->registerNotifyEvent( array( "blog_post" => tra("An entry is posted to a blog") ) );
