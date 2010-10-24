@@ -37,6 +37,14 @@ if( $gContent->isValid() ) {
 	$gContent->verifyCreatePermission();
 }
 
+// user canceled out get us out of here
+if( !empty( $_REQUEST['cancel'] ) ) {
+	if(  $gContent->isValid() ) {
+		bit_redirect( $gContent->getDisplayUrl() );
+	}else{
+		bit_redirect( BLOGS_PKG_URL );
+	}
+}
 
 // nuke post if requested
 if( !empty( $_REQUEST['action'] ) ) {

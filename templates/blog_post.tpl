@@ -137,6 +137,7 @@
 						{include file="bitpackage:liberty/edit_storage_list.tpl"}
 
 						<div class="buttonHolder row submit">
+							<input class="button" type="submit" name="cancel" value="{tr}Cancel{/tr}" />&nbsp;
 							<input class="button" type="submit" name="preview" value="{tr}Preview{/tr}" />&nbsp;
 							<input class="button" type="submit" name="save_post_exit" value="{tr}Save{/tr}" />
 						</div>
