@@ -28,5 +28,5 @@ if ( $gBitSystem->isFeatureActive( 'blog_ajax_more' ) && $gBitThemes->isJavascri
 $gDefaultCenter = 'bitpackage:blogs/center_list_blog_posts.tpl';
 $gBitSmarty->assign_by_ref( 'gDefaultCenter', $gDefaultCenter );
 
-$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl', 'List Blog Posts' , array( 'display_mode' => 'display' ));
+$gBitSystem->display( 'bitpackage:kernel/dynamic.tpl', 'List '.$gLibertySystem->getContentTypeName( BITBLOGPOST_CONTENT_TYPE_GUID, TRUE ) , array( 'display_mode' => 'display' ));
 ?>
