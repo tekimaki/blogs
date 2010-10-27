@@ -379,7 +379,7 @@ class BitBlogPost extends LibertyMime {
 		if( !empty( $pParamHash['expire_date'] ) ) {
 			$pParamHash['post_store']['expire_date'] = $pParamHash['expire_date'];
 		}else{
-			$pParamHash['post_store']['expire_date'] = $gBitSystem->getUTCTime();
+			$pParamHash['post_store']['expire_date'] = $pParamHash['post_store']['publish_date']; 
 		}
 		
 		// if we have an error we get them all by checking parent classes for additional errors
