@@ -32,7 +32,8 @@ if( $gBitUser->hasPermission( 'p_blog_posts_read_future' ) || $gBitUser->isAdmin
 	$futuresHash['min_owner_status_id'] = 0;
 	$futuresHash['include_drafts'] = !empty( $moduleParams['module_params']['include_drafts'] )?TRUE:FALSE;
     $futures = $blogPost->getFutureList( $futuresHash );
-    $gBitSmarty->assign( 'futures', $futures['data']);
+    $gBitSmarty->assign_by_ref( 'futures', $futures['data']);
+	$gBitSmarty->assign_by_ref( 'futuresListInfo', $futures['listInfo'] );
 } else {
     $_REQUEST['max_records'] = $gBitSystem->getConfig( 'blog_posts_max_list' );
 }
