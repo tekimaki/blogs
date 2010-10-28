@@ -100,7 +100,7 @@ $blogPosts = $blogPost->getList( $listHash );
 $gBitSmarty->assign( 'paginationPath', $paginationPath );
 $gBitSmarty->assign_by_ref( 'gQueryUserId', $listHash['user_id'] );
 $gBitSmarty->assign_by_ref( 'blogPosts', $blogPosts["data"] );
-$gBitSmarty->assign( 'listInfo', $blogPosts['listInfo'] );
+$gBitSmarty->assign_by_ref( 'listInfo', $blogPosts['listInfo'] );
 $gBitSmarty->assign( 'descriptionLength', $gBitSystem->getConfig( 'blog_posts_description_length', 500 ));
 $gBitSmarty->assign( 'showDescriptionsOnly', TRUE );
 $gBitSmarty->assign( 'showBlogTitle', 'y' );
