@@ -30,6 +30,7 @@ if( $gBitUser->hasPermission( 'p_blog_posts_read_future' ) || $gBitUser->isAdmin
 	// prevent anything lower than publicly visible be displayed in blog roll
 	$futuresHash['enforce_status'] = TRUE;
 	$futuresHash['min_owner_status_id'] = 0;
+	$futuresHash['include_drafts'] = !empty( $moduleParams['module_params']['include_drafts'] )?TRUE:FALSE;
     $futures = $blogPost->getFutureList( $futuresHash );
     $gBitSmarty->assign( 'futures', $futures['data']);
 } else {

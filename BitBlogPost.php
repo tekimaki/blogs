@@ -793,6 +793,11 @@ class BitBlogPost extends LibertyMime {
 		$bindVars = array();
 		array_push( $bindVars, $this->mContentTypeGuid );
 
+		if( !empty( $pListHash['include_drafts'] ) ) {
+			$pListHash['min_status_id'] = -10;
+			$pListHash['min_owner_status_id'] = -10;
+		}
+
 		$this->getServicesSql( 'content_list_sql_function', $selectSql, $joinSql, $whereSql, $bindVars, NULL, $pListHash );
 
 		if( @$this->verifyId( $pListHash['blog_id'] ) ) {
