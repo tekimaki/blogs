@@ -20,7 +20,7 @@
 					{/forminput}
 				</div>
 
-				<div class="row submit">
+				<div class="buttonHolder row submit">
 					<input type="submit" name="set_blog_home" value="{tr}Change preferences{/tr}" />
 				</div>
 			{/legend}
@@ -90,7 +90,7 @@
 					{/forminput}
 				</div>
 
-				<div class="row submit">
+				<div class="buttonHolder row submit">
 					<input type="submit" name="featuresTabSubmit" value="{tr}Change preferences{/tr}" />
 				</div>
 			{/legend}
@@ -110,7 +110,7 @@
 					</div>
 				{/foreach}
 
-				<div class="row submit">
+				<div class="buttonHolder row submit">
 					<input type="submit" name="listTabSubmit" value="{tr}Change preferences{/tr}" />
 				</div>
 			{/legend}

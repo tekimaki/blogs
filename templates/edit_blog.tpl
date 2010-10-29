@@ -83,7 +83,7 @@
 
 						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl"}
 
-						<div class="row submit">
+						<div class="buttonHolder row submit">
 							<input type="submit" name="preview" value="{tr}preview{/tr}" />&nbsp;
 							<input type="submit" name="save_blog" value="{tr}save{/tr}" />
 						</div>

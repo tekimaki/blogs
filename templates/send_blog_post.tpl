@@ -28,7 +28,7 @@
 					{/forminput}
 				</div>
 
-				<div class="row submit">
+				<div class="buttonHolder row submit">
 					<input type="submit" name="send" value="{tr}Send{/tr}" />
 				</div>
 			{/form}

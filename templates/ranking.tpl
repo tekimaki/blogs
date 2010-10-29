@@ -30,7 +30,7 @@
 				{/forminput}
 			</div>
 
-			<div class="row submit">
+			<div class="buttonHolder row submit">
 				<input type="submit" name="selrank" value="{tr}Apply settings{/tr}" />
 			</div>
 		{/form}
