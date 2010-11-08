@@ -134,8 +134,6 @@
 						{* here we assign edit_content_status_tpl to customize the status input presentation. this gets passed along to liberty::edit_service_mini_inc.tpl *}
 						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl" edit_content_status_tpl="bitpackage:blogs/edit_blogpost_status_inc.tpl"}
 
-						{include file="bitpackage:liberty/edit_storage_list.tpl"}
-
 						<div class="buttonHolder row submit">
 							<input class="button" type="submit" name="cancel" value="{tr}Cancel{/tr}" />&nbsp;
 							<input class="button" type="submit" name="preview" value="{tr}Preview{/tr}" />&nbsp;
