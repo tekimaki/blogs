@@ -27,6 +27,8 @@ require_once( LIBERTY_PKG_PATH.'LibertyMime.php');
 require_once( BLOGS_PKG_PATH.'BitBlog.php');
 
 define( 'BITBLOGPOST_CONTENT_TYPE_GUID', 'bitblogpost' );
+define( 'BITBLOGPOST_DRAFT_STATUS_ID', -5 );
+define( 'BITBLOGPOST_PUBLISHED_STATUS_ID', 50 );
 
 /**
  * @package blogs
@@ -1203,17 +1205,21 @@ class BitBlogPost extends LibertyMime {
 	 */
 	function getAvailableContentStatuses( $pUserMinimum=-6, $pUserMaximum=51 ) {
 		global $gBitUser;
-		$ret = LibertyMime::getAvailableContentStatuses( $pUserMinimum, $pUserMaximum );
-		// this is a little ugly as we manually trim the list to just what we need for blog posts for regular users
+		// standard list of options
 		if( !$gBitUser->hasPermission( 'p_liberty_edit_all_status' )) {
-			if ( array_key_exists( -1, $ret ) ){
-				unset( $ret[-1] );
-			}
-			if ( array_key_exists( 50, $ret ) && $ret[50]=="Available" ){
-				$ret[50] = "Public";
-			}
+			$ret = array( 
+				BITBLOGPOST_DRAFT_STATUS_ID => "Draft",
+				BITBLOGPOST_PUBLISHED_STATUS_ID => "Published",
+			);
 		}
-		return $ret;
+		// for admins modify the master list of options
+		else{
+			$ret = LibertyMime::getAvailableContentStatuses( $pUserMinimum, $pUserMaximum );
+			$ret[BITBLOGPOST_DRAFT_STATUS_ID] = "Draft";
+			$ret[BITBLOGPOST_PUBLISHED_STATUS_ID] = "Published";
+			ksort( $ret );
+		}
+        return $ret;
 	}
 
 	/**
