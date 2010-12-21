@@ -65,7 +65,7 @@
 				{/if}
 
 				{* any service edit template tabs *}
-				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl" display_help_tab=1}
+				{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_tab_tpl" display_help_tab=1 formid="editpageform"}
 			{/jstabs}
 			</div>
 			<div class="editcontainer">
@@ -132,7 +132,7 @@
 						{/if}
 
 						{* here we assign edit_content_status_tpl to customize the status input presentation. this gets passed along to liberty::edit_service_mini_inc.tpl *}
-						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl" edit_content_status_tpl="bitpackage:blogs/edit_blogpost_status_inc.tpl"}
+						{include file="bitpackage:liberty/edit_services_inc.tpl" serviceFile="content_edit_mini_tpl" edit_content_status_tpl="bitpackage:blogs/edit_blogpost_status_inc.tpl" formid="editpageform"}
 
 						<div class="buttonHolder row submit">
 							<input class="button" type="submit" name="cancel" value="{tr}Cancel{/tr}" />&nbsp;
