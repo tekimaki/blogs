@@ -122,7 +122,8 @@ class BitBlogPost extends LibertyMime {
 					$comment->mRootObj = $this;
 					$this->mInfo['num_comments'] = $comment->getNumComments($this->mInfo['content_id']);
 					// Get the comments associated with this post
-					$this->mInfo['comments'] = $comment->getComments($this->mInfo['content_id'], $gBitSystem->getConfig( 'comments_per_page', 10 ) );
+					// @TODO slated for delete - shouldnt need this, comments are loaded by comments_inc.php in liberty
+					// $this->mInfo['comments'] = $comment->getComments($this->mInfo['content_id'], $gBitSystem->getConfig( 'comments_per_page', 10 ) );
 				}
 
 				if (!$this->mInfo['trackbacks_from'] || $this->mInfo['trackbacks_from']===null)
