@@ -50,7 +50,7 @@
 					<div class="row">
 						{formlabel label=`$output.label` for=$item}
 						{forminput}
-							<input type="text" name="$item" value="{$gBitSystem->getConfig($item, 3)}" id="{$item}" />
+						<input type="text" name="{$item}" value="{$gBitSystem->getConfig($item)|default:$output.default}" id="{$item}" />
 							{formhelp note=`$output.note` page=`$output.page`}
 						{/forminput}
 					</div>

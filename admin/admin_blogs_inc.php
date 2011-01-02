@@ -80,6 +80,11 @@ $formBlogInputs = array(
 	"blog_top_post_count" => array(
 		'label' => 'Top Post Count',
 		'note' => 'How many posts per blog in the rankings should be shown.',
+		'default' => 3,
+	),
+	"blog_recent_posts_title" => array( 
+		'label' => 'Recent posts page title',
+		'note' => 'Customize the recent posts page title.',
 	),
 );
 $gBitSmarty->assign( 'formBlogInputs', $formBlogInputs );
@@ -102,6 +107,6 @@ if( $processForm ) {
 	$gBitSystem->storeConfig("blog_posts_autosplit", isset( $_REQUEST["blog_posts_autosplit"] ) ? 'y' : 'n', BLOGS_PKG_NAME );	
 	$gBitSmarty->assign('blog_list_order', $_REQUEST["blog_list_order"]);
 	$gBitSmarty->assign('blog_list_user_as', $_REQUEST['blog_list_user_as']);
+	$gBitSystem->storeConfig("blog_recent_posts_title", (isset( $_REQUEST["blog_recent_posts_title"]) ? $_REQUEST["blog_recent_posts_title"] : NULL) );
 }
 
-?>
