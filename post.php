@@ -63,10 +63,10 @@ if( !empty( $_REQUEST['action'] ) ) {
 		$formHash['action'] = 'remove';
 		$formHash['post_id'] = $_REQUEST['post_id'];
 		$msgHash = array(
-			'label' => tra('Remove Blog Post'),
+			'label' => tra( 'Remove '.$gContent->getContentTypeName() ), 
 			'confirm_item' => $gContent->getTitle(),
-			'warning' => tra( 'This will remove the above blog post.' ),
-			'error' => tra( 'This cannot be undone!' ),
+			'warning' => tra( 'Are you sure you want to delete this post? ' ),
+			'error' => tra( 'Once you delete a post, it cannot be restored!' ),
 		);
 		$gBitSystem->confirmDialog( $formHash, $msgHash );
 	}
