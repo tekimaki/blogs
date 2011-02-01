@@ -987,7 +987,8 @@ class BitBlogPost extends LibertyMime {
 				));
 				//$res['thumbnail_url'] = liberty_fetch_thumbnail_url( $res['image_attachment_path'], 'avatar' );
 				$res['thumbnail_url'] = BitBlogPost::getImageThumbnails( $res );				
-				$res['num_comments'] = $comment->getNumComments( $res['content_id'] );
+				$commentCountHash = array( 'enforce_status' => TRUE, 'min_owner_status_id' => 0 );
+				$res['num_comments'] = $comment->getNumComments( $res['content_id'], $commentCountHash );
 				$res['post_url'] = BitBlogPost::getDisplayUrl( $res['content_id'], $res );
 				$res['display_url'] = $res['post_url'];
 				$res['display_link'] = $this->getDisplayLink( $res['title'], $res );
