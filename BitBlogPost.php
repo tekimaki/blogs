@@ -1021,7 +1021,9 @@ class BitBlogPost extends LibertyMime {
 				if( !empty( $pListHash['full_data'] ) ) {
 					$parseHash['data'] = $res['data'];
 					$res['parsed'] = $this->parseData( $parseHash );
-				} else {
+				// if summary is set we dont need a split from the data - this reduces needless parsing
+				// @TODO update the parser in Liberty to cache parse data from lists
+				} elseif( empty( $res['summary'] ) ){
 					$parseHash['data'] = $res['data'];
 					$parseHash['no_cache'] = TRUE;
 					$splitArray = $this->parseSplit($parseHash, $gBitSystem->getConfig( 'blog_posts_description_length', 500));
