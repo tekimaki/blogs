@@ -51,7 +51,7 @@ $listHash = array(
 $listHash = array();
 if( !empty( $moduleParams )) {
 	$listHash = array_merge( $_REQUEST, $moduleParams['module_params'] );
-	$listHash['max_records'] = $module_rows;
+	$listHash['max_records'] = isset( $module_rows )?$module_rows: NULL;
 	//$listHash['parse_data'] = TRUE;
 	//$listHash['load_comments'] = TRUE;
 } else {
